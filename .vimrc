@@ -9,11 +9,26 @@
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-Bundle 'gmarik/vundle'
-Bundle 'Valloric/YouCompleteMe'
+Plugin 'gmarik/Vundle.vim'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'initrc/eclim-vundle'
+Plugin 'scrooloose/nerdtree'
+Plugin 'dkprice/vim-easygrep'
+Plugin 'majutsushi/tagbar'
+Plugin 'mhinz/vim-signify'
+Plugin 'tpope/vim-sleuth'
+Plugin 'kien/ctrlp.vim'
+Plugin 'derekwyatt/vim-scala'
+Plugin 'pragkent/vim-google-cpp-style'
+
+call vundle#end()
+filetype plugin indent on
+
+let g:ycm_confirm_extra_conf = 0
+let g:ycm_always_populate_location_list = 1
 
 " Uncomment the next line to make Vim more Vi-compatible
 " NOTE: debian.vim sets 'nocompatible'.  Setting 'compatible' changes numerous
@@ -23,7 +38,7 @@ Bundle 'Valloric/YouCompleteMe'
 " Vim5 and later versions support syntax highlighting. Uncommenting the next
 " line enables syntax highlighting by default.
 if has("syntax")
-  syntax on
+  syntax on 
 endif
 
 " If using a dark background within the editing area and syntax highlighting
@@ -51,15 +66,18 @@ set smartcase		" Do smart case matching
 set incsearch		" Incremental search
 set colorcolumn=80
 highlight ColorColumn ctermbg=Black
+set textwidth=80
 set backspace=indent,eol,start
 set autowrite		" Automatically save before commands like :next and :make
 set hidden             " Hide buffers when they are abandoned
 set mouse=a		" Enable mouse usage (all modes)
 set number		"Show line numbers
-set tabstop=2		" Number of spaces that a <Tab> in the file counts for.  
-set smarttab		" When on, a <Tab> in front of a line inserts blanks according to
-set shiftwidth=4    " 'shiftwidth'. 'tabstop' is used in other places.  A
 set expandtab	"<BS> will delete a 'shiftwidth' worth of spaces at the beginning of a line.
+set tabstop=2		" Number of spaces that a <Tab> in the file counts for.  
+set softtabstop=2
+set shiftwidth=2    " 'shiftwidth'. 'tabstop' is used in other places.  A
+set autoindent
+set smarttab		" When on, a <Tab> in front of a line inserts blanks according to
 set formatoptions=c,q,r,t " This is a sequence of letters which describes how
                         " automatic formatting is to be done.
                         "
@@ -77,7 +95,6 @@ nmap <A-Left> :tabp<CR>
 nmap <A-Right> :tabn<CR>
 imap <A-Left> <C-[>:tabp<CR>
 imap <A-Right> <C-[>:tabn<CR>
-ca t tabe 
 nmap <C-Left> ^
 nmap <C-Right> <End>
 imap <C-Left> <C-[>^i
@@ -86,6 +103,7 @@ nmap <S-Left> B
 nmap <S-Right> E
 imap <S-Left> <C-[>Bi
 imap <S-Right> <C-[>Ei
-imap <C-j> <C-n>
+map <C-n> :NERDTreeToggle<CR>
+map <C-]> :TagbarToggle<CR>
 set ofu=syntaxcomplete#Complete
-
+let g:EclimCompletionMethod = 'omnifunc'
